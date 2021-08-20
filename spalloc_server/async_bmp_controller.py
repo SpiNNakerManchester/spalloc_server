@@ -125,8 +125,8 @@ class AsyncBMPController(object):
     def _good_fpga(self, board, fpga):
         fpga_id = self._transceiver.read_fpga_register(
             fpga_num=fpga, register=_FPGA_FLAG_REGISTER_ADDRESS,
-            board=board, cabinet=0, frame=0)
-        ok = (fpga_id & _FPGA_FLAG_ID_MASK) == fpga
+            board=board, cabinet=0, frame=0) & _FPGA_FLAG_ID_MASK
+        ok = fpga_id == fpga or fpga_id == _FPGA_FLAG_ID_ALWAYS_OK
         if not ok:  # pragma: no cover
             logging.warning(
                 "FPGA %d on board %d of %s has incorrect FPGA ID flag %d",
@@ -328,6 +328,9 @@ _FPGA_FLAG_REGISTER_ADDRESS = 0x40004
 
 # The FPGA ID field within the FLAG register value
 _FPGA_FLAG_ID_MASK = 0x3
+
+# The FPGA ID used by boards which can't handle a normal bit-file
+_FPGA_FLAG_ID_ALWAYS_OK = 0x3
 
 # Gives the FPGA number and register addresses for the STOP register (which
 # disables outgoing traffic on a high-speed link) for each link direction.
