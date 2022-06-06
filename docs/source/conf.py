@@ -51,8 +51,8 @@ AUTHORS = u'Jonathan Heathcote and the SpiNNaker Project'
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys  # noqa
-import os   # noqa
+import sys  # noqa: E402
+import os   # noqa: E402
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -104,7 +104,7 @@ autodoc_member_order = "bysource"
 # built documents.
 #
 # The short X.Y version.
-from spalloc_server import __version__ as version  # noqa
+from spalloc_server import __version__ as version  # noqa: E402
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -153,9 +153,9 @@ intersphinx_mapping = {'python': ('http://docs.python.org/3', None),
 
 # -- linkcode GitHub link generator ---------------------------------------
 
-import inspect  # noqa
+import inspect  # noqa: E402
 
-import spalloc_server  # noqa
+import spalloc_server  # noqa: E402
 
 local_module_path = spalloc_server.__file__
 github_module_path = "spalloc_server/"
