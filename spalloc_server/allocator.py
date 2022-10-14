@@ -479,9 +479,9 @@ class Allocator(object):
 
         # If the requested board is outside the dimensions of the machine, the
         # request definitely can't be met.
-        if board_requested and not(0 <= x < self.width and
-                                   0 <= y < self.height and
-                                   0 <= z < 3):
+        if board_requested and not (0 <= x < self.width and
+                                    0 <= y < self.height and
+                                    0 <= z < 3):
             return False
 
         # If the requested board is dead, this should fail
