@@ -66,6 +66,7 @@ jobs:
       uses: ./support/actions/pylint
       with: 
         package: spalloc_server
+        exitcheck: 39
 
     - name: Run rat copyright enforcement
       if: matrix.python-version == 3.8
