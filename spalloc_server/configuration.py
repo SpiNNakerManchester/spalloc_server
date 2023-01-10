@@ -502,7 +502,7 @@ def board_locations_from_spinner(filename):
     """
     # Extract lookup from Ethernet connected chips to locations
     chip_locations = {}
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         for entry in csv.DictReader(f):
             cfb = tuple(map(int, (entry["cabinet"],
                                   entry["frame"],

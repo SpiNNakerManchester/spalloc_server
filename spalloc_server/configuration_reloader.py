@@ -35,6 +35,7 @@ class ConfigurationReloader(object, metaclass=AbstractBase):
             self._callback = callback
             log.info("configuration reloading enabled: "
                      "send SIGHUP to trigger reload")
+        self._reload_config = None
 
     def _sighup_handler(self, signum, _frame):
         """ Handler for SIGHUP. If such a signal is delivered, will trigger a\
@@ -71,7 +72,7 @@ class ConfigurationReloader(object, metaclass=AbstractBase):
         """
         self._reload_config = False
         try:
-            with open(self._config_filename, "r") as f:
+            with open(self._config_filename, "r", encoding="utf-8") as f:
                 config_script = f.read()
         except (IOError, OSError):  # pragma: no cover
             log.exception("Could not read config file %s",
