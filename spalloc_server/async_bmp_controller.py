@@ -19,6 +19,7 @@ a whole rack.
 import threading
 import logging
 from collections import namedtuple, deque
+from spinnman.exceptions import SpallocException
 from spinnman.transceiver import create_transceiver_from_hostname
 from spinnman.model import BMPConnectionData
 from spinnman.constants import SCP_SCAMP_PORT
@@ -160,7 +161,7 @@ class AsyncBMPController(object):
             if not len(retry_boards):
                 return
             boards_to_power = retry_boards
-        raise Exception(
+        raise SpallocException(
             "Could not get correct FPGA ID after {} tries".format(
                 _N_FPGA_RETRIES))
 
