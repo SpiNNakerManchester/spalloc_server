@@ -85,7 +85,7 @@ Tests are run using pytest_::
     $ pip install -r requirements-test.txt
     $ py.test tests
 
-.. _pytest: http://pytest.org/latest/
+.. _pytest: https://pytest.org/latest/
 
 Documentation is built using Sphinx_::
 
@@ -93,7 +93,7 @@ Documentation is built using Sphinx_::
     $ cd docs
     $ make html
 
-.. _Sphinx: http://www.sphinx-doc.org/en/stable/
+.. _Sphinx: https://www.sphinx-doc.org/en/stable/
 
 Server logic (:py:mod:`~spalloc_server.server`)
 -----------------------------------------------
