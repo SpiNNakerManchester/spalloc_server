@@ -57,10 +57,10 @@ To define an isolated single-board machine, the
 
 Most multi-board systems follow a standardised IP addressing scheme and have
 their physical layout defined by `SpiNNer
-<http://spinner.readthedocs.org/en/stable>`_. The
+<https://spinner.readthedocs.org/en/stable>`_. The
 :py:func:`.board_locations_from_spinner` function reads CSV files produced by
 `spinner-ethernet-chips
-<http://spinner.readthedocs.org/en/stable/spinner-ethernet-chips.html>`_
+<https://spinner.readthedocs.org/en/stable/spinner-ethernet-chips.html>`_
 describing machine layouts and the :py:meth:`.Machine.with_standard_ips`
 constructor produces a :py:class:`~spalloc_server.configuration.Machine`
 with IP addresses based on the
@@ -480,7 +480,7 @@ class Machine(namedtuple("Machine", "name,tags,width,height,"
 def board_locations_from_spinner(filename):
     """ Utility function which converts a CSV file produced by
     the `spinner-ethernet-chips
-    <http://spinner.readthedocs.org/en/stable/spinner-ethernet-chips.html>`_
+    <https://spinner.readthedocs.org/en/stable/spinner-ethernet-chips.html>`_
     utility into a ``board_locations`` dictionary suitable for defining
     :py:class:`.Machine` objects.
 

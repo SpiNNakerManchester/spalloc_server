@@ -27,7 +27,7 @@ class PackTree(object):
 
     This tree structure is used to allocate/pack rectangular subregions of
     SpiNNaker machine in a fashion similar to `this lightmap packing algorithm
-    <http://www.blackpawn.com/texts/lightmaps/default.html>`_. It is certainly
+    <https://www.blackpawn.com/texts/lightmaps/default.html>`_. It is certainly
     not the most efficient or flexible packing algorithm available but due to
     time constraints it is ideal due to its simplicity.
     """

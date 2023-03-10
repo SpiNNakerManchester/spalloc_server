@@ -5,7 +5,7 @@ SpiNNaker Machine Partitioning and Allocation Server (``spalloc_server``)
  :target: https://pypi.python.org/pypi/spalloc_server/
  :alt: PyPi version
 .. image:: https://readthedocs.org/projects/spalloc_server/badge/?version=stable
- :target: http://spalloc_server.readthedocs.org/
+ :target: https://spalloc_server.readthedocs.org/
  :alt: Documentation
 .. image:: https://github.com/SpiNNakerManchester/spalloc_server/workflows/Python%20Build/badge.svg?branch=master
  :alt: Build Status
@@ -21,6 +21,6 @@ simultaneous users.
 This package just contains a server which exposes a simple TCP interface to
 clients to enable them to request hardware.
 
-The `documentation <http://spalloc-server.readthedocs.org/>`_ describes the
+The `documentation <https://spalloc-server.readthedocs.org/>`_ describes the
 process of configuring and running servers, the simple JSON-based client
 protocol and an overview of the server's implementation.
