@@ -93,7 +93,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'SpiNNaker Partitioning Server'
-copyright = u'2016-2021, the University of Manchester'
+copyright = u'2016, the University of Manchester'
 
 # Autodoc should list members in the same order as the source code.
 autodoc_member_order = "bysource"
@@ -147,8 +147,7 @@ pygments_style = 'sphinx'
 
 # Search Python docs for extra definitions.
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
-                       'rig': ('https://rig.readthedocs.org/en/stable/', None)
-                       }
+                      }
 
 # -- linkcode GitHub link generator ---------------------------------------
 
