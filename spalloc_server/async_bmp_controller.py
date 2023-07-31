@@ -72,7 +72,7 @@ class AsyncBMPController(object):
 
         self._transceiver = create_transceiver_from_hostname(
             None, 5, bmp_connection_data=
-                BMPConnectionData(0, 0, hostname, [0], SCP_SCAMP_PORT))
+                BMPConnectionData(hostname, [0], SCP_SCAMP_PORT))
         self._hostname = hostname
 
         self._stop = False
