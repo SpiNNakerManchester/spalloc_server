@@ -124,8 +124,7 @@ class AsyncBMPController(object):
 
     def _good_fpga(self, board, fpga):
         fpga_id = self._transceiver.read_fpga_register(
-            fpga_num=fpga, register=_FPGA_FLAG_REGISTER_ADDRESS,
-            board=board, cabinet=0, frame=0)
+            fpga_num=fpga, register=_FPGA_FLAG_REGISTER_ADDRESS, board=board)
         ok = (fpga_id & _FPGA_FLAG_ID_MASK) == fpga
         if not ok:  # pragma: no cover
             logging.warning(
@@ -139,15 +138,13 @@ class AsyncBMPController(object):
         for _try in range(_N_FPGA_RETRIES):
             # Power on - note don't need to power off if in subsequent
             # run of the loop as the BMP handles this correctly
-            self._transceiver.power_on(
-                boards=boards_to_power, frame=0, cabinet=0)
+            self._transceiver.power_on(boards=boards_to_power)
 
             # Check if the FPGA number is correct on each FPGA
             retry_boards = []
             for board in boards_to_power:
                 # skip board if old BMP version
-                vi = self._transceiver.read_bmp_version(
-                    board=board, frame=0, cabinet=0)
+                vi = self._transceiver.read_bmp_version(board=board)
                 if vi.version_number[0] < _BMP_VER_MIN:
                     continue
 
@@ -175,14 +172,13 @@ class AsyncBMPController(object):
         :type board: int or iterable
         """
         # skip FPGA link configuration if old BMP version
-        vi = self._transceiver.read_bmp_version(
-            board=board, frame=0, cabinet=0)
+        vi = self._transceiver.read_bmp_version(board=board)
         if vi.version_number[0] < _BMP_VER_MIN:
             return
 
         fpga, addr = FPGA_LINK_STOP_REGISTERS[link]
         self._transceiver.write_fpga_register(
-            fpga, addr, int(not enable), board=board, frame=0, cabinet=0)
+            fpga, addr, int(not enable), board=board)
 
     def _run(self):
         """ The background thread for interacting with the BMP.
@@ -214,8 +210,7 @@ class AsyncBMPController(object):
                             # Finally send any power off commands
                             if request.power_off_boards:
                                 self._transceiver.power_off(
-                                    boards=request.power_off_boards,
-                                    frame=0, cabinet=0)
+                                    boards=request.power_off_boards)
 
                             # Exit the retry loop if the requests all worked
                             request.on_done(True, None)
