@@ -250,8 +250,7 @@ def test_set_link_enable(abc, bc, link, fpga, addr, enable, value,
     abc.add_requests(requests)
     e.wait()
     assert e.success is success
-    bc.write_fpga_register.assert_called_with(fpga, addr, value, board=10,
-                                              frame=0, cabinet=0)
+    bc.write_fpga_register.assert_called_with(fpga, addr, value, board=10)
     bc.write_fpga_register.reset_mock()
 
 
@@ -272,8 +271,7 @@ def test_set_link_enable_blocks(abc, bc):
     assert done_event.wait(0.1) is False
 
     # We should be sure the power command is blocking on the BMP call
-    bc.write_fpga_register.assert_called_with(0, 0x5C, False, board=10,
-                                              frame=0, cabinet=0)
+    bc.write_fpga_register.assert_called_with(0, 0x5C, False, board=10)
 
     # When the BMP call completes, so should the done_event!
     event.set()
@@ -319,8 +317,7 @@ def test_atomic_order(abc, bc):
     # We should be sure the power command is blocking on the BMP call
     assert len(bc.power_on.mock_calls) == 0
     assert len(bc.power_off.mock_calls) == 0
-    bc.write_fpga_register.assert_called_with(0, 0x5C, False, board=11,
-                                              frame=0, cabinet=0)
+    bc.write_fpga_register.assert_called_with(0, 0x5C, False, board=11)
     bc.write_fpga_register.reset_mock()
 
     # Make BMP call complete and the last event finish

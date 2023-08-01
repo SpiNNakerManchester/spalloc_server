@@ -182,7 +182,7 @@ class AsyncBMPController(object):
 
         fpga, addr = FPGA_LINK_STOP_REGISTERS[link]
         self._transceiver.write_fpga_register(
-            fpga, addr, int(not enable), board=board, frame=0, cabinet=0)
+            fpga, addr, int(not enable), board=board)
 
     def _run(self):
         """ The background thread for interacting with the BMP.
