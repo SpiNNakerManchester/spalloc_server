@@ -104,7 +104,8 @@ def test_start_and_stop(on_thread_start):
         bmp.join()
 
 
-def mock_read_fpga_register(fpga_num, register, board, cabinet, frame):
+def mock_read_fpga_register(
+        self, fpga_num, register, cabinet=0, frame=0, board=0):
     return fpga_num
 
 
