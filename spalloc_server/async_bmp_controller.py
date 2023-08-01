@@ -71,8 +71,9 @@ class AsyncBMPController(object):
         self._on_thread_start = on_thread_start
 
         self._transceiver = create_transceiver_from_hostname(
-            None, 5, bmp_connection_data=
-                BMPConnectionData(hostname, [0], SCP_SCAMP_PORT))
+            None, 5, bmp_connection_data=[
+                BMPConnectionData(ip_address=hostname,
+                                  boards=[0], port_num=SCP_SCAMP_PORT)])
         self._hostname = hostname
 
         self._stop = False
@@ -124,7 +125,8 @@ class AsyncBMPController(object):
 
     def _good_fpga(self, board, fpga):
         fpga_id = self._transceiver.read_fpga_register(
-            fpga_num=fpga, register=_FPGA_FLAG_REGISTER_ADDRESS, board=board)
+            fpga_num=fpga, register=_FPGA_FLAG_REGISTER_ADDRESS,
+            board=board)
         ok = (fpga_id & _FPGA_FLAG_ID_MASK) == fpga
         if not ok:  # pragma: no cover
             logging.warning(

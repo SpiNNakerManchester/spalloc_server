@@ -104,7 +104,7 @@ def test_start_and_stop(on_thread_start):
         bmp.join()
 
 
-def mock_read_fpga_register(fpga_num, register, board):
+def mock_read_fpga_register(fpga_num, register, board=0):
     return fpga_num
 
 
@@ -136,7 +136,7 @@ def test_set_power(abc, bc, power_side_effect, success):
     e.wait()
     assert e.success is success
     assert len(bc.power_on.mock_calls) == 0
-    bc.power_off.assert_called_with(boards=[10], frame=0, cabinet=0)
+    bc.power_off.assert_called_with(boards=[10])
     bc.power_off.reset_mock()
 
     bc.power_on.side_effect = power_side_effect
@@ -149,7 +149,7 @@ def test_set_power(abc, bc, power_side_effect, success):
     abc.add_requests(requests)
     e.wait()
     assert e.success is success
-    bc.power_on.assert_called_with(boards=[11], frame=0, cabinet=0)
+    bc.power_on.assert_called_with(boards=[11])
     bc.power_on.reset_mock()
     assert len(bc.power_off.mock_calls) == 0
 
@@ -170,7 +170,7 @@ def test_set_power_blocks(abc, bc):
     assert done_event.wait(0.1) is False
 
     # We should be sure the power command is blocking on the BMP call
-    bc.power_off.assert_called_with(boards=[10], frame=0, cabinet=0)
+    bc.power_off.assert_called_with(boards=[10])
 
     # When the BMP call completes, so should the done_event!
     event.set()
@@ -198,7 +198,7 @@ def test_set_power_merge(abc, bc, power_side_effect, success):
     event.wait()
     assert event.success is success
 
-    bc.power_off.assert_called_with(boards=[10, 11, 13], frame=0, cabinet=0)
+    bc.power_off.assert_called_with(boards=[10, 11, 13])
 
 
 @pytest.mark.timeout(1.0)
@@ -220,10 +220,10 @@ def test_set_power_dont_merge(abc, bc):
     assert event.success
 
     assert bc.power_off.mock_calls == [
-        call(boards=[10, 12], frame=0, cabinet=0)
+        call(boards=[10, 12])
     ]
     assert bc.power_on.mock_calls == [
-        call(boards=[11], frame=0, cabinet=0),
+        call(boards=[11]),
     ]
 
 
@@ -303,7 +303,7 @@ def test_atomic_order(abc, bc):
     assert event.wait(0.1) is False
 
     # Make sure just the power command has been called
-    bc.power_on.assert_called_with(boards=[10], frame=0, cabinet=0)
+    bc.power_on.assert_called_with(boards=[10])
     bc.power_on.reset_mock()
     assert len(bc.power_off.mock_calls) == 0
     assert len(bc.write_fpga_register.mock_calls) == 0
@@ -328,7 +328,7 @@ def test_atomic_order(abc, bc):
 
     # Make sure just the power command has been called a second time (and not
     # the link setting command)
-    bc.power_off.assert_called_with(boards=[12], frame=0, cabinet=0)
+    bc.power_off.assert_called_with(boards=[12])
     bc.power_off.reset_mock()
     assert len(bc.power_on.mock_calls) == 0
     assert len(bc.write_fpga_register.mock_calls) == 0
