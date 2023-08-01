@@ -104,7 +104,7 @@ def test_start_and_stop(on_thread_start):
         bmp.join()
 
 
-def mock_read_fpga_register(fpga_num, register, board=0, cabinet=0, frame=0):
+def mock_read_fpga_register(fpga_num, register, board=0):
     return fpga_num
 
 
@@ -117,7 +117,7 @@ class MockVersionNumber(object):
         return self._version
 
 
-def mock_read_bmp_version(board, frame=0, cabinet=0):
+def mock_read_bmp_version(board):
     return MockVersionNumber((2, 0, 0))
 
 
