@@ -126,7 +126,7 @@ class AsyncBMPController(object):
     def _good_fpga(self, board, fpga):
         fpga_id = self._transceiver.read_fpga_register(
             fpga_num=fpga, register=_FPGA_FLAG_REGISTER_ADDRESS,
-            board=board, cabinet=0, frame=0)
+            board=board)
         ok = (fpga_id & _FPGA_FLAG_ID_MASK) == fpga
         if not ok:  # pragma: no cover
             logging.warning(
