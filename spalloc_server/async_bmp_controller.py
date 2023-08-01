@@ -42,7 +42,7 @@ class AsyncBMPController(object):
     Since BMP commands, particularly power-on commands, take some time to
     complete, it is desirable for them to be executed asynchronously. This
     object uses a SpiNNMan :py:class:`~spinnman.transceiver.Transceiver` object
-    to communicate with a BMP controlling a single frame of boards.
+    to communicate with a BMP.
 
     Power and link configuration commands are queued and executed in a
     background thread. When a command completes, a user-supplied callback is
