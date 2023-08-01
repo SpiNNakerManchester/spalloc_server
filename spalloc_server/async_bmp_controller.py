@@ -71,9 +71,8 @@ class AsyncBMPController(object):
         self._on_thread_start = on_thread_start
 
         self._transceiver = create_transceiver_from_hostname(
-            None, 5, bmp_connection_data=
-                BMPConnectionData(ip_address=hostname,
-                                  boards=[0], port_num=SCP_SCAMP_PORT))
+            None, 5, bmp_connection_data=BMPConnectionData(
+                ip_address=hostname, boards=[0], port_num=SCP_SCAMP_PORT))
         self._hostname = hostname
 
         self._stop = False
