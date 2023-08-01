@@ -140,8 +140,7 @@ class AsyncBMPController(object):
         for _try in range(_N_FPGA_RETRIES):
             # Power on - note don't need to power off if in subsequent
             # run of the loop as the BMP handles this correctly
-            self._transceiver.power_on(
-                boards=boards_to_power, frame=0, cabinet=0)
+            self._transceiver.power_on(boards=boards_to_power)
 
             # Check if the FPGA number is correct on each FPGA
             retry_boards = []
@@ -215,8 +214,7 @@ class AsyncBMPController(object):
                             # Finally send any power off commands
                             if request.power_off_boards:
                                 self._transceiver.power_off(
-                                    boards=request.power_off_boards,
-                                    frame=0, cabinet=0)
+                                    boards=request.power_off_boards)
 
                             # Exit the retry loop if the requests all worked
                             request.on_done(True, None)
