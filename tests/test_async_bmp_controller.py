@@ -117,7 +117,7 @@ class MockVersionNumber(object):
         return self._version
 
 
-def mock_read_bmp_version(board, frame, cabinet):
+def mock_read_bmp_version(board, frame=0, cabinet=0):
     return MockVersionNumber((2, 0, 0))
 
 

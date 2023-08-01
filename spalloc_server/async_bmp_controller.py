@@ -42,7 +42,7 @@ class AsyncBMPController(object):
     Since BMP commands, particularly power-on commands, take some time to
     complete, it is desirable for them to be executed asynchronously. This
     object uses a SpiNNMan :py:class:`~spinnman.transceiver.Transceiver` object
-    to communicate with a BMP controlling a single frame of boards.
+    to communicate with a BMP
 
     Power and link configuration commands are queued and executed in a
     background thread. When a command completes, a user-supplied callback is
@@ -146,8 +146,7 @@ class AsyncBMPController(object):
             retry_boards = []
             for board in boards_to_power:
                 # skip board if old BMP version
-                vi = self._transceiver.read_bmp_version(
-                    board=board, frame=0, cabinet=0)
+                vi = self._transceiver.read_bmp_version(board=board)
                 if vi.version_number[0] < _BMP_VER_MIN:
                     continue
 
@@ -175,8 +174,7 @@ class AsyncBMPController(object):
         :type board: int or iterable
         """
         # skip FPGA link configuration if old BMP version
-        vi = self._transceiver.read_bmp_version(
-            board=board, frame=0, cabinet=0)
+        vi = self._transceiver.read_bmp_version(board=board)
         if vi.version_number[0] < _BMP_VER_MIN:
             return
 
